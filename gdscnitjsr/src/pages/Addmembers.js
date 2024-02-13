@@ -8,9 +8,10 @@ export const Addmembers = () => {
     const [branch, setbranch] = useState("");
     const [year, setyear] = useState("");
     const [team, setteam] = useState("");
-    const [teamType, setteamtype] = useState("");
+    const [teamType, setteamtype] = useState("core team member");
     const [profilePhoto, setFile] = useState();
     const [image, setImage] = useState();
+    const [resp, setres] = useState();
     const handleChangename = (e) => {
       setname(e.target.value);
     };
@@ -67,7 +68,8 @@ reader.readAsDataURL(imgfile);
         
   
         if (res && res.data.success) {
-  
+          console.log("response for image  is ",res.data.newUser.imageurl)
+          setres(res)
           alert(res.data.msg)
           
           
@@ -77,7 +79,7 @@ reader.readAsDataURL(imgfile);
   
       } catch (error) {
         console.error('Error during signup:', error);
-        alert("erro")
+        alert("error")
       }
     };
   return (
@@ -133,6 +135,12 @@ reader.readAsDataURL(imgfile);
 
                 <button type="submit" className="btn btn-primary">ADD MEMBER</button>
               </form>
+              {resp && (
+                  <>
+                    <img src={`http://localhost:3080/${resp.data.newUser.imageurl}`} alt="User" />
+                    {console.log(`http://localhost:3080/${resp.data.newUser.imageurl}`)}
+                  </>
+                )}
             </div>
           </div>
         </div>

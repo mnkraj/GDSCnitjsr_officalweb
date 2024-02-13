@@ -13,19 +13,37 @@ app.use(
     optionsSuccessStatus: 204,
   })
 );
+app.use('/userImages',express.static('userImages'))
 dotenv.config();
 // dotenv.config({ path: "./config/config.env" });
 connectDB();
-const uploadUserImage=multer({
-  storage:multer.diskStorage({
-    destination(req,file,cb){
-      cb(null,path.join(__dirname,'userImages'));
-    },
-    filename(req,file,cb){
-      cb(null,`${new Date().getTime()}_${file.originalname}`);
-    }
-  })
+// const uploadUserImage=multer({
+//   storage:multer.diskStorage({
+//     destination(req,file,cb){
+//       cb(null,path.join(__dirname,'userImages/'));
+//     },
+//     filename(req,file,cb){
+//       cb(null,`${new Date().getTime()}_${file.originalname}`);
+//     }
+//   })
+// })
+
+
+
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'userImages/')
+  },
+  filename: function (req, file, cb) {
+    cb(null,`${new Date().getTime()}_${file.originalname}`);
+  }
 })
+
+const upload = multer({ storage: storage })
+
+
+
 
 app.get("/", (req, res) => {
   res.send("Hello World");
@@ -36,7 +54,7 @@ app.use(express.json());
 
 //app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 // app.use("/api/user", require("./routes/authRoute"));
-app.use("/api/user",uploadUserImage.single('profilePhoto'), require("./routes/authRoute"));
+app.use("/api/user",upload.single('profilePhoto'), require("./routes/authRoute"));
 
 
 // app.use("/api/search", tokenCheck, searchRouter);

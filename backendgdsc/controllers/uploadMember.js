@@ -2,7 +2,7 @@ const Model = require("../models/model");
 const registerController = async (req, res) => {
     try {
       const { name, branch, teamType, team, year,profilePhoto,registration } = req.body;
-  
+      console.log(req.file)
       if(!name)
       {return res.status(400).send({msg:"Name is required!"})}
       if(!registration)
@@ -37,6 +37,8 @@ const registerController = async (req, res) => {
         team,
         teamType,
         profilePhoto: req.file.filename, // Use the filename provided by multer
+        imageurl:req.file.path,
+
       }).save();
   
       res.status(201).send({

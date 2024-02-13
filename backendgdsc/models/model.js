@@ -28,6 +28,9 @@ const schema = new mongoose.Schema({
     profilePhoto: {
       type: String, // Assuming the profile photo is stored as a URL or file path
     },
+    imageurl: {
+      type: String, // Assuming the profile photo is stored as a URL or file path
+    },
   });
   
 const model = mongoose.model("model", schema);
