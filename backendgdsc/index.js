@@ -4,13 +4,15 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const multer = require("multer");
 const path = require("path");
+const Signup = require("./routes/Signup");
+const Login = require("./routes/Login");
+const Event = require("./routes/Addevents")
 const app = express();
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:3001",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
+    credentials: true,
   })
 );
 app.use('/userImages',express.static('userImages'))
@@ -55,7 +57,9 @@ app.use(express.json());
 //app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 // app.use("/api/user", require("./routes/authRoute"));
 app.use("/api/user",upload.single('profilePhoto'), require("./routes/authRoute"));
-
+app.use("/api/v1/", Signup);
+app.use("/api/v1/", Login);
+app.use("/api/v1/", Event);
 
 // app.use("/api/search", tokenCheck, searchRouter);
 
