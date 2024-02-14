@@ -1,7 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
+import { useNavigate } from 'react-router-dom';
 const Events = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [details, setDetails] = useState({
     title: "",
@@ -12,6 +14,31 @@ const Events = () => {
     description: "",
     
   });
+  const  authenticate=async ()=>{
+    const value=localStorage.getItem("email")
+    if(!value){
+      navigate('/login');
+     }
+      else{
+const ans=await axios.post('http://localhost:3080/api/user/authenticate',{
+ email:value
+})
+
+if (ans && ans.data.success) {
+ console.log(value)
+ console.log(ans)
+} else {
+ navigate('/login')
+ 
+}
+
+
+      }
+}
+  useEffect(()=>{
+   
+    authenticate()
+     },[localStorage.getItem("email")])
 const [thumbnail,setthumbnail] = useState()
 const [res,setres]=useState()
   const handleChange = (e) => {
