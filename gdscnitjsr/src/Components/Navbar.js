@@ -48,7 +48,7 @@ const Navbar = () => {
             <li>
               <a
                 href="/addmember"
-                className="block py-1 px-2 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
+                className="block py-1 px-2 md:p-0 text-black bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
                 aria-current="page"
               >
                 Add Members
