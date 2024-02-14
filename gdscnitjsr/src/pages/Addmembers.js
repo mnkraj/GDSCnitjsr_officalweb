@@ -86,7 +86,7 @@ reader.readAsDataURL(imgfile);
   return (
     <>
     <Navbar />
-      <div className="container mt-5">
+      <div className="container  bg-gray-50 dark:bg-gray-900">
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card">
@@ -135,7 +135,7 @@ reader.readAsDataURL(imgfile);
   </select>
 </div>
 
-                <button type="submit" className="btn btn-primary">ADD MEMBER</button>
+                <button type="submit" className="btn btn-primary bg-primary">ADD MEMBER</button>
               </form>
               {resp && (
                   <>
