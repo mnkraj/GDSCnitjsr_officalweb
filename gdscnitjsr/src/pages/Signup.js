@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-
 const Signup = () => {
   const [status, setStatus] = useState({
     success: "",
@@ -46,7 +45,6 @@ const Signup = () => {
 
     const response = await fetch("http://localhost:3080/api/v1/signup", {
       method: "POST",
-     
       headers: {
         "Content-Type": "application/json",
       },
@@ -75,7 +73,7 @@ const Signup = () => {
       setStatus({
         success: "success",
         message: result.message,
-        email:result.email
+        email: result.email
       });
     }
   };
@@ -171,7 +169,7 @@ const Signup = () => {
                 >
                   Create an account
                 </button>
-                <p className="text-sm font-light text-gray-500 fs-3 dark:text-black">
+                <p className="text-sm font-light text-gray-500 dark:text-black">
                   <strong>Already have an account?{" "}</strong>
                   <Link
                     to="/login"

@@ -3,11 +3,12 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Events from "./pages/Events";
 import { Addmembers } from "./pages/Addmembers";
-import Navbar from "./Components/Navbar";
+//import Navbar from "./Components/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <>
+    
       <Router>
         <Routes>
           <Route exact path="/signup" element={<Signup />}></Route>
