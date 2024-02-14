@@ -7,10 +7,11 @@ const path = require("path");
 const Signup = require("./routes/Signup");
 const Login = require("./routes/Login");
 const Event = require("./routes/Addevents")
+const Displayevents = require("./routes/Displayevents")
 const app = express();
 app.use(
   cors({
-    origin: "http://localhost:3001",
+    origin: "http://localhost:3000",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
@@ -60,7 +61,7 @@ app.use("/api/user",upload.single('profilePhoto'), require("./routes/authRoute")
 app.use("/api/v1/", Signup);
 app.use("/api/v1/", Login);
 app.use("/api/v1/", Event);
-
+app.use("/api/v1/",Displayevents );
 // app.use("/api/search", tokenCheck, searchRouter);
 
 

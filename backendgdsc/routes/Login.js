@@ -10,7 +10,7 @@ router.post('/login', async (req, res) => {
     email = email.toLowerCase()
     
     try {
-        console.log(email)
+        //console.log(email)
       const admin = await Admin.findOne({ email });
   
       if (!admin) {
