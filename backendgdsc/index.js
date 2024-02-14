@@ -7,10 +7,13 @@ const path = require("path");
 const Signup = require("./routes/Signup");
 const Login = require("./routes/Login");
 const Event = require("./routes/Addevents")
+const Displayevents = require("./routes/Displayevents")
 const app = express();
 app.use(
   cors({
+
     origin: "*",
+
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
    
   })
@@ -75,7 +78,11 @@ app.use(express.json());
 app.use("/api/user",upload.single('profilePhoto'), require("./routes/authRoute"));
 app.use("/api/v1/", Signup);
 app.use("/api/v1/", Login);
+
+app.use("/api/v1/",Displayevents );
+
 app.use("/api/v1/", upload1.single('thumbnail'),Event);
+
 
 // app.use("/api/search", tokenCheck, searchRouter);
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-
+import Navbar from "../Components/Navbar";
 const Events = () => {
   const [loading, setLoading] = useState(false);
   const [details, setDetails] = useState({
@@ -53,6 +53,8 @@ console.log(response);
   };
 
   return (
+    <>
+    <Navbar />
     <section className="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 max-w-md w-full">
         <h1 className="text-2xl font-bold text-black dark:text-black mb-6">
@@ -170,6 +172,7 @@ console.log(response);
                 )}
       </div>
     </section>
+    </>
   )
 }
 export default Events;

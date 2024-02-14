@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Navbar from '../Components/Navbar';
 export const Addmembers = () => {
 
     
@@ -84,6 +85,7 @@ reader.readAsDataURL(imgfile);
     };
   return (
     <>
+    <Navbar />
       <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-6">

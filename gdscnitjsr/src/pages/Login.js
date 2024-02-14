@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import {Link} from "react-router-dom"
+import {Link , useNavigate} from "react-router-dom"
 const Login = () => {
     const [loading,setLoading] = useState(false)
   const [details, setDetails] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate()
   const [isValid, setIsValid] = useState(false);
 
   const handleChange = (e) => {
@@ -36,6 +37,7 @@ const Login = () => {
       else{
          setLoading(false)
          alert("Login success")
+         navigate("/addevents")
          console.log("Login success")
       }
   
