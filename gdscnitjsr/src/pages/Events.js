@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 const Events = () => {
@@ -9,31 +10,43 @@ const Events = () => {
     startTime: "",
     endTime: "",
     description: "",
-    thumbnail: "",
+    
   });
-
+const [thumbnail,setthumbnail] = useState()
+const [res,setres]=useState()
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setDetails({ ...details, [name]: value });
+    setDetails({ ...details, [name]: value});
   };
-
+const handlethumbnail = (e) =>{
+  setthumbnail(e.target.files[0]);
+}
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const response = await fetch("http://localhost:3080/api/v1/addevents", {
-      method: "POST",
-      credentials: "include",
+    const formData = new FormData();
+    formData.append('title', details.title);
+    formData.append('category', details.category);
+    formData.append('date', details.date);
+    formData.append('startTime', details.startTime);
+    formData.append('endTime', details.endTime);
+    formData.append('description', details.description);
+    formData.append('thumbnail', thumbnail);
+    console.log(thumbnail);
+    const response = await axios.post('http://localhost:3080/api/v1/addevents',formData,{
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'multipart/form-data',
       },
-      body: JSON.stringify(details),
-    });
-    const result = await response.json();
-
-    if (!result.success) {
-      alert(result.message);
+    })
+    
+console.log(response);
+    if (!response.data.success) {
+      setres(response.data);
+      alert("error");
       setLoading(false);
     } else {
+      console.log("response.data",response.data)
+      setres(response.data);
       setLoading(false);
       alert("Event Added");
     }
@@ -135,10 +148,11 @@ const Events = () => {
             <input
               className="form-input mt-1 block w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-blue-500 dark:focus:ring-blue-500"
               aria-describedby="user_avatar_help"
-              onChange={handleChange}
+              accept='image/*' 
+              onChange={handlethumbnail}
               id="thumbnail"
               name="thumbnail"
-              type="file"
+              type="file" required
             />
           </div>
           <button
@@ -148,6 +162,12 @@ const Events = () => {
             Add Event
           </button>
         </form>
+        {res && (
+                  <>
+                    <img src={`http://localhost:3080/${res.thumbnailurl}`} alt="User" />
+                    {console.log(`http://localhost:3080/${res.thumbnailurl}`)}
+                  </>
+                )}
       </div>
     </section>
   )

@@ -17,7 +17,7 @@ const Login = () => {
     e.preventDefault();
   
     const response = await fetch("http://localhost:3080/api/v1/login", {
-      method: "POST",credentials: "include",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },

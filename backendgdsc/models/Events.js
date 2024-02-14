@@ -25,9 +25,12 @@ const EventSchema = new Schema({
     type: String,
     required: true,
   },
-  thumnail: {
+  thumbnail: {
     type: String,
-    //required: true,
+    required: true,
   },
+  thumbnailurl:{
+    type: String,
+  }
 });
 module.exports = mongoose.model("Event", EventSchema);

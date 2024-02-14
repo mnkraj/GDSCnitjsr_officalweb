@@ -46,7 +46,7 @@ const Signup = () => {
 
     const response = await fetch("http://localhost:3080/api/v1/signup", {
       method: "POST",
-      credentials: "include",
+     
       headers: {
         "Content-Type": "application/json",
       },

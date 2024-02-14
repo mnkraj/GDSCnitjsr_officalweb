@@ -3,7 +3,8 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Event = require("../models/Events")
 router.post('/addevents', async (req, res) => {
-    let { title,category,date,startTime,endTime,description,thumnail } = req.body;
+    let { title,category,date,startTime,endTime,description } = req.body;
+    console.log(req.file,req.file.path)
     //email = email.toLowerCase()
     try {
         Event.create({
@@ -13,9 +14,10 @@ router.post('/addevents', async (req, res) => {
           startTime:startTime,
           endTime:endTime,
           description:description,
-          thumnail:thumnail
+          thumbnail: req.file.filename, // Use the filename provided by multer
+          thumbnailurl:req.file.path,
         });
-        res.json({ success: true });
+        res.json({ success: true ,thumbnailurl:req.file.path});
       } catch (e) {
         res.json({ success: false , message : "Internal Server Error" });
       }
