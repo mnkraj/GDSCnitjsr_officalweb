@@ -11,12 +11,15 @@ const Displayevents = require("./routes/Displayevents")
 const app = express();
 app.use(
   cors({
-    origin: "http://localhost:3000",
+
+    origin: "*",
+
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
+   
   })
 );
 app.use('/userImages',express.static('userImages'))
+app.use('/thumbnail',express.static('thumbnail'))
 dotenv.config();
 // dotenv.config({ path: "./config/config.env" });
 connectDB();
@@ -48,6 +51,21 @@ const upload = multer({ storage: storage })
 
 
 
+
+
+
+const storage1 = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'thumbnail/')
+  },
+  filename: function (req, file, cb) {
+    cb(null,`${new Date().getTime()}_${file.originalname}`);
+  }
+})
+
+const upload1 = multer({ storage: storage1 })
+
+
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
@@ -60,8 +78,12 @@ app.use(express.json());
 app.use("/api/user",upload.single('profilePhoto'), require("./routes/authRoute"));
 app.use("/api/v1/", Signup);
 app.use("/api/v1/", Login);
-app.use("/api/v1/", Event);
+
 app.use("/api/v1/",Displayevents );
+
+app.use("/api/v1/", upload1.single('thumbnail'),Event);
+
+
 // app.use("/api/search", tokenCheck, searchRouter);
 
 

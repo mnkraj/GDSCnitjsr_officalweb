@@ -60,7 +60,7 @@ reader.readAsDataURL(imgfile);
         formData.append('year', year);
         formData.append('branch', branch);
         formData.append('profilePhoto', profilePhoto);
-        
+        console.log(profilePhoto)
         const res = await axios.post('http://localhost:3080/api/user/addmember', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
