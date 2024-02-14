@@ -36,6 +36,8 @@ const Login = () => {
       }
       else{
          setLoading(false)
+         console.log(result.email)
+         localStorage.setItem("email", result.email);
          alert("Login success")
          navigate("/addevents")
          console.log("Login success")

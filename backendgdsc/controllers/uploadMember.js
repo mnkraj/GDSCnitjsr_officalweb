@@ -1,4 +1,5 @@
 const Model = require("../models/model");
+const Admin=require("../models/Admin")
 const registerController = async (req, res) => {
     try {
       const { name, branch, teamType, team, year,profilePhoto,registration } = req.body;
@@ -51,8 +52,18 @@ const registerController = async (req, res) => {
       res.status(500).send({ msg: "Internal server error" });
     }
   };
-  
+  const authenticate = async (req, res) => {
+    const {email}=req.body;
+    const user=await Admin.findOne({email})
+
+  if(!user){
+return res.json({success:false,msg:"please login"})
+    }
+    else{
+      res.json({success:true,msg:"loggined"})
+    }
+  }
 module.exports = {
-    registerController
+    registerController,authenticate
    
   };

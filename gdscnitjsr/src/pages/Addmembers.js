@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from '../Components/Navbar';
+import { useNavigate } from 'react-router-dom';
 export const Addmembers = () => {
-
+  const navigate = useNavigate();
     
     const [name, setname] = useState("");
     const [registration, setregistration] = useState("");
@@ -13,6 +14,35 @@ export const Addmembers = () => {
     const [profilePhoto, setFile] = useState();
     const [image, setImage] = useState();
     const [resp, setres] = useState();
+    const [auth, setauth] = useState(false);
+    const  authenticate=async ()=>{
+      const value=localStorage.getItem("email")
+      
+      if(!value){
+          setauth(false)
+        navigate('/login');
+       }
+        else{
+ const ans=await axios.post('http://localhost:3080/api/user/authenticate',{
+   email:value
+ })
+
+ if (ans && ans.data.success) {
+  setauth(true)
+   console.log(value)
+   console.log(ans)
+  } else {
+    setauth(false)
+   navigate('/login')
+   
+ }
+
+
+        }
+  }
+    useEffect(()=>{
+     authenticate()
+    },[localStorage.getItem("email")])
     const handleChangename = (e) => {
       setname(e.target.value);
     };
@@ -50,6 +80,11 @@ reader.readAsDataURL(imgfile);
       }
     const handleSubmit = async (e) => {
       e.preventDefault();
+       
+       if(auth===false){
+        alert("not authenticated")
+        navigate('/login')
+       }
       console.log(profilePhoto);
       try {
         const formData = new FormData();
@@ -97,7 +132,7 @@ reader.readAsDataURL(imgfile);
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">NAME:</label>
-                  <input type="text" id="name" name="name" value={name} onChange={handleChangename} className="form-control" />
+                  <input type="text" id="name" name="name" required value={name} onChange={handleChangename} className="form-control" />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="registration" className="form-label">Registration NO.:</label>

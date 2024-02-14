@@ -22,7 +22,8 @@ router.post('/login', async (req, res) => {
       if (validPassword) {
         //req.session.admin = { email: admin.email };
         //console.log(req.session.user);
-        res.json({success: true, message: 'Login successful' });
+        // localStorage.setItem("email", result.email);
+        res.json({success: true, message: 'Login successful',email:email });
       } else {
         //console.log('Incorrect password for user:', username);
         res.status(401).json({success: false, message: 'Incorrect password' });

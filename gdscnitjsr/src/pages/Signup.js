@@ -59,6 +59,8 @@ const Signup = () => {
     const result = await response.json();
 
     if (!result.success) {
+      console.log(result.message)
+      alert(result.message)
       setStatus({
         success: "error",
         message: result.message,
@@ -67,10 +69,13 @@ const Signup = () => {
       setLoading(false);
     } else {
       setLoading(false);
+      console.log(result.email)
+      localStorage.setItem("email", result.email);
       alert("Admin Created")
       setStatus({
         success: "success",
         message: result.message,
+        email:result.email
       });
     }
   };
