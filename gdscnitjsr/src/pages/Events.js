@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
 import { useNavigate } from "react-router-dom";
+import toast from 'react-hot-toast';
 import Spinner from "./Spinner";
 const Events = () => {
   const navigate = useNavigate();
@@ -71,13 +72,14 @@ const Events = () => {
     console.log(response);
     if (!response.data.success) {
       setres(response.data);
-      alert("error");
+      //alert("error");
+      toast.error(response.data.message)
       setLoading(false);
     } else {
       console.log("response.data", response.data);
       setres(response.data);
-
-      alert("Event Added");
+      toast.success("Event Added Successfully")
+      //alert("Event Added");
       setLoading(false);
     }
   };

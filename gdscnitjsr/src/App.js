@@ -3,12 +3,15 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Events from "./pages/Events";
 import { Addmembers } from "./pages/Addmembers";
+import "react-toastify/dist/ReactToastify.css";
+import { Toaster } from "react-hot-toast";
+
 //import Navbar from "./Components/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <>
-    
+      <Toaster position="top-center" reverseOrder={false} />
       <Router>
         <Routes>
           <Route exact path="/signup" element={<Signup />}></Route>

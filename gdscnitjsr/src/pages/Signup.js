@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import Spinner from "./Spinner"
-//import "./Spinner.css";
+import toast from 'react-hot-toast';
 const Signup = () => {
   const [status, setStatus] = useState({
     success: "",
@@ -59,8 +59,9 @@ const Signup = () => {
     const result = await response.json();
 
     if (!result.success) {
-      console.log(result.message)
-      alert(result.message)
+      //console.log(result.message)
+      toast.error(result.message)
+      //alert(result.message)
       setStatus({
         success: "error",
         message: result.message,
@@ -71,8 +72,8 @@ const Signup = () => {
       
       console.log(result.email)
       localStorage.setItem("email", result.email);
-      
-      alert("Admin Created")
+      toast.success("Admin Added Successfully")
+      //alert("Admin Created")
       navigate("/login")
       setStatus({
         success: "success",

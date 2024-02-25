@@ -56,11 +56,12 @@ const registerController = async (req, res) => {
     const {email}=req.body;
     const user=await Admin.findOne({email})
 
-  if(!user){
-return res.json({success:false,msg:"please login"})
+  if(user && user.verified){
+    res.json({success:true,msg:"loggined"})
     }
     else{
-      res.json({success:true,msg:"loggined"})
+      //
+      return res.json({success:false,msg:"please login"})
     }
   }
 module.exports = {

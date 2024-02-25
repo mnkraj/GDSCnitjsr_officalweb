@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {Link , useNavigate} from "react-router-dom"
 import Spinner from "./Spinner"
+import toast from 'react-hot-toast';
 const Login = () => {
     const [loading,setLoading] = useState(false)
   const [details, setDetails] = useState({
@@ -31,7 +32,7 @@ const Login = () => {
     const result = await response.json();
   
       if (!result.success) {
-        alert(result.message);
+        toast.error(result.message);
         
         setLoading(false)
       }
@@ -39,7 +40,8 @@ const Login = () => {
          
          console.log(result.email)
          localStorage.setItem("email", result.email);
-         alert("Login success")
+         //alert("Login success")
+         toast.success(`Looged in as ${result.email}`)
          navigate("/addevents")
          //console.log("Login success")
          setLoading(false)

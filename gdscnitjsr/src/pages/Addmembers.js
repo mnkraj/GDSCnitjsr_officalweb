@@ -3,6 +3,7 @@ import axios from "axios";
 import Spinner from "./Spinner";
 import Navbar from "../Components/Navbar";
 import { useNavigate } from "react-router-dom";
+import toast from 'react-hot-toast';
 export const Addmembers = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -106,15 +107,17 @@ export const Addmembers = () => {
       if (res && res.data.success) {
         console.log("response for image  is ", res.data.newUser.imageurl);
         setres(res);
-        alert(res.data.msg);
+        //alert(res.data.msg);
+        toast.success(res.data.msg)
         setLoading(false)
       } else {
-        alert(res.data.msg);
+        toast.error(res.data.msg);
         setLoading(false)
       }
     } catch (error) {
       console.error("Error during signup:", error);
-      alert("error");
+      //alert("error");
+      toast.error(error)
       setLoading(false)
     }
   };
@@ -122,7 +125,7 @@ export const Addmembers = () => {
     <>
       <Navbar />
       {loading && <Spinner />}
-      <div className="container  bg-gray-50 dark:bg-gray-900"  style={{ opacity: loading ? 0.3 : 1 }}>
+      <div className=" bg-gray-50 dark:bg-gray-900 overflow-hidden "  style={{ opacity: loading ? 0.3 : 1 , width : "100%" ,height : "93vh"  }}>
         <div className="row justify-content-center">
           <div className="col-md-6">
             <div className="card">
@@ -130,7 +133,7 @@ export const Addmembers = () => {
                 <h1 className="text-center">Addmember</h1>
               </div>
               <div className="card-body">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} >
                   <div className="mb-3">
                     <label htmlFor="name" className="form-label">
                       NAME:
