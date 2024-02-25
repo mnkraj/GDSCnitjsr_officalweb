@@ -7,8 +7,8 @@ const bcrypt = require("bcrypt");
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
-      user: '2022ugcs097@nitjsr.ac.in',
-      pass: 'harshitsribsc26092003@',
+      user: emailprimary,
+      pass: emailprimarypassword,
   }
 });
 
@@ -32,9 +32,10 @@ router.post("/signup", async (req, res) => {
       password: secpwd,
       verificationToken: verificationToken
     });
+    //console.log("data sent to databse")
     const mailOptions = {
-      from: '2022ugcs097@nitjsr.ac.in',
-      to: "mayankraj7100@gmail.com",
+      from: emailprimary,
+      to: emailsecondary,
       subject: 'Email Verification',
       html: `Someone with the name :  ${name} and Email id : ${email} just registered on the GDSC Admin portal.<br> Click here http://localhost:3080/api/v1/verify/${verificationToken} to verify ${name}.`
     };
