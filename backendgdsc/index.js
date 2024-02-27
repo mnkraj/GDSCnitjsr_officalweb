@@ -12,7 +12,11 @@ const Members = require("./routes/Displaymembers")
 const verifytoken = require("./routes/verifytoken")
 const app = express();
 app.use(
-  cors()
+  cors({
+    origin: "https://gdscfrontend.vercel.app",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
 );
 app.use('/userImages',express.static('userImages'))
 app.use('/thumbnail',express.static('thumbnail'))
