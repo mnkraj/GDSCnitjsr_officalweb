@@ -20,7 +20,7 @@ router.post('/addevents', async (req, res) => {
         });
         res.json({ success: true ,thumbnailurl:req.file.path});
       } catch (e) {
-        res.json({ success: false , message : "Internal Server Error" });
+        res.json({ success: false , message : e });
       }
   });
 
