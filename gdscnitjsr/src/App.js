@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
 
-import Home from './Components/Home'
-import Signup from './pages/Signup';
-import Login from './pages/Login';
-import EventsPage from './pages/Events';
-import { Addmembers } from './pages/Addmembers';
+import Home from './Components/Home.js'
+import Signup from './pages/Signup.js';
+import Login from './pages/Login.js';
+import EventsPage from './pages/Events.js';
+import { Addmembers } from './pages/Addmembers.js';
 
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
