@@ -1,78 +1,73 @@
+// Navbar.js
+
 import React, { useState } from "react";
-import logo from "./logo.jpg";
+import { Link as ScrollLink } from "react-scroll";
+import { Link as AnchorLink } from "react-router-dom";
+import LOGO from "../img/GDSC Logo chapter lockup template 1.svg";
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+function Navbar() {
+  let Links = [
+    { name: "About Us", link: "about" },
+    { name: "Our Team", link: "our-team" },
+    { name: "Events", link: "events" },
+    { name: "Socials", link: "socials" },
+    { name: "Join Us", link: "join-us", url: "https://gdsc.community.dev/national-institute-of-technology-nit-jamshedpur/" },
+  ];
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+  let [open, setOpen] = useState(false);
+
+  const handleLinkClick = () => {
+    setOpen(false);
   };
 
   return (
-    <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
-        <div>
-          <a
-            href="https://gdsc.community.dev/national-institute-of-technology-nit-jamshedpur/"
-            className="flex items-center space-x-3 rtl:space-x-reverse"
-          >
-            <img src={logo} className="h-6" alt="Flowbite Logo" />
-            <span className="self-center text-lg font-semibold whitespace-nowrap dark:text-white">
-              GDSC NITJSR
-            </span>
-          </a>
-          <button
-            onClick={toggleMenu}
-            type="button"
-            className="inline-flex items-center p-2 w-8 h-8 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-expanded={isOpen ? "true" : "false"}
-          >
-            <span className="sr-only">Open main menu</span>
-            <svg
-              className="w-4 h-4"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 17 14"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M1 1h15M1 7h15M1 13h15"
-              />
-            </svg>
-          </button>
-        </div>
+    <div className="shadow-md w-full relative top-0 left-0 z-[1000000] Navbar">
+      <div className="md:flex items-center justify-between bg-white py-4 md:px-10 px-7 z-[10000]">
         <div
-          className={`${
-            isOpen ? "block" : "hidden"
-          } w-full md:flex md:w-auto`}
+          className="font-bold text-2xl cursor-pointer flex items-center font-[Poppins] text-gray-800"
         >
-          <ul className="flex flex-col font-medium mt-2 rounded-lg bg-gray-50 md:space-x-4 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
-            <li>
-              <a
-                href="/addmember"
-                className="block py-1 px-2 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                aria-current="page"
-              >
-                Add Members
-              </a>
-            </li>
-            <li>
-              <a
-                href="/addevents"
-                className="block py-1 px-2 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >
-                Add Events
-              </a>
-            </li>
-          </ul>
+          <img src={LOGO} className="w-[70%] sm:w-auto" alt="Logo" />
         </div>
+
+        <div
+          onClick={() => setOpen(!open)}
+          className="text-3xl absolute right-8 top-6 cursor-pointer md:hidden"
+        >
+          <ion-icon name={open ? "close" : "menu"}></ion-icon>
+        </div>
+
+        <ul
+          className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${
+            open ? "top-20 " : "top-[-490px]"
+          }`}
+        >
+          {Links.map((link) => (
+            <li key={link.name} className="md:ml-8 text-xl md:my-0 my-7">
+              {link.url ? (
+                <AnchorLink
+                  to={link.url}
+                  className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer"
+                >
+                  {link.name}
+                </AnchorLink>
+              ) : (
+                <ScrollLink
+                  to={link.link}
+                  spy={true}
+                  smooth={true}
+                  duration={500}
+                  onClick={handleLinkClick}
+                  className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer"
+                >
+                  {link.name}
+                </ScrollLink>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
-    </nav>
+    </div>
   );
-};
+}
 
 export default Navbar;

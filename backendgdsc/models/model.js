@@ -25,6 +25,7 @@ const schema = new mongoose.Schema({
       type: String,
       required: true,
     },
+  
     profilePhoto: {
       type: String, // Assuming the profile photo is stored as a URL or file path
     },

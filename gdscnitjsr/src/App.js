@@ -1,26 +1,31 @@
-import "./App.css";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
-import Events from "./pages/Events";
-import { Addmembers } from "./pages/Addmembers";
-import "react-toastify/dist/ReactToastify.css";
-import { Toaster } from "react-hot-toast";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
-//import Navbar from "./Components/Navbar";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Home from './components/home'
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import EventsPage from './pages/Events';
+import { Addmembers } from './pages/Addmembers';
+
+import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
       <Router>
         <Routes>
-          <Route exact path="/signup" element={<Signup />}></Route>
-          <Route exact path="/login" element={<Login />}></Route>
-          <Route exact path="/" element={<Login />}></Route>
-          <Route exact path="/addevents" element={<Events />}></Route>
-          <Route exact path="/addmember" element={<Addmembers />}></Route>
+          <Route exact path="/signup" element={<Signup />} />
+          <Route exact path="/login" element={<Login />} />
+           <Route exact path="/" element={<Home />} />
+          <Route exact path="/addevents" element={<EventsPage />} />
+          <Route exact path="/addmember" element={<Addmembers />} />
         </Routes>
       </Router>
+       
     </>
   );
 }

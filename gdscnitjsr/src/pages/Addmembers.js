@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "./Spinner";
-import Navbar from "../Components/Navbar";
+import Navbar from "../components/navbar";
 import { useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 export const Addmembers = () => {
@@ -125,7 +125,7 @@ export const Addmembers = () => {
     <>
       <Navbar />
       {loading && <Spinner />}
-      <div className=" bg-gray-50 dark:bg-gray-900 overflow-hidden "  style={{ opacity: loading ? 0.3 : 1 , width : "100%" ,height : "93vh"  }}>
+      
         <div className="row justify-content-center">
           <div className="col-md-6">
             <div className="card">
@@ -189,7 +189,7 @@ export const Addmembers = () => {
                   </div>
                   <div className="mb-3">
                     <label htmlFor="team" className="form-label">
-                      Team.:
+                      Position.:
                     </label>
                     <input
                       type="text"
@@ -202,7 +202,7 @@ export const Addmembers = () => {
                   </div>
                   <div className="mb-3">
                     <label htmlFor="profilePhoto" className="form-label">
-                      Team.:
+                      Profile.:
                     </label>
                     <input
                       type="file"
@@ -248,7 +248,7 @@ export const Addmembers = () => {
             </div>
           </div>
         </div>
-      </div>
+      
     </>
   );
 };

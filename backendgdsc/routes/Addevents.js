@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Event = require("../models/Events")
 router.post('/addevents', async (req, res) => {
-    let { title,category,date,startTime,endTime,description } = req.body;
+    let { title,category,date,startTime,endTime,description,color } = req.body;
     console.log(req.file,req.file.path)
     //email = email.toLowerCase()
     try {
@@ -16,6 +16,7 @@ router.post('/addevents', async (req, res) => {
           description:description,
           thumbnail: req.file.filename, // Use the filename provided by multer
           thumbnailurl:req.file.path,
+          color:color
         });
         res.json({ success: true ,thumbnailurl:req.file.path});
       } catch (e) {

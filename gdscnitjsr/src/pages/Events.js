@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Navbar from "../Components/Navbar";
+import Navbar from "../components/navbar";
 import { useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 import Spinner from "./Spinner";
-const Events = () => {
+const Addevents = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [details, setDetails] = useState({
@@ -14,6 +14,7 @@ const Events = () => {
     startTime: "",
     endTime: "",
     description: "",
+    color:"",
   });
   const authenticate = async () => {
     const value = localStorage.getItem("email");
@@ -58,6 +59,7 @@ const Events = () => {
     formData.append("endTime", details.endTime);
     formData.append("description", details.description);
     formData.append("thumbnail", thumbnail);
+    formData.append("color", details.color);
     console.log(thumbnail);
     const response = await axios.post(
       "http://localhost:3080/api/v1/addevents",
@@ -197,6 +199,23 @@ const Events = () => {
                 required
               />
             </div>
+
+
+            <div>
+              <label htmlFor="color" className="block text-sm font-medium">
+                Color
+              </label>
+              <input
+                type="text"
+                id="color"
+                name="color"
+                onChange={handleChange}
+                className="form-input mt-1 block w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                required
+              />
+            </div>
+
+
             <button
               type="submit"
               className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-blue-200"
@@ -218,4 +237,4 @@ const Events = () => {
     </>
   );
 };
-export default Events;
+export default Addevents;
