@@ -16,6 +16,7 @@ app.use(
     origin: "https://gdscfrontend.vercel.app",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 app.use('/userImages',express.static('userImages'))
