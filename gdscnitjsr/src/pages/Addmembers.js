@@ -25,7 +25,7 @@ export const Addmembers = () => {
       navigate("/login");
     } else {
       const ans = await axios.post(
-        "http://localhost:3080/api/user/authenticate",
+        "https://gds-cnitjsr-offical.vercel.app/api/user/authenticate",
         {
           email: value,
         }
@@ -95,7 +95,7 @@ export const Addmembers = () => {
       formData.append("profilePhoto", profilePhoto);
       console.log(profilePhoto);
       const res = await axios.post(
-        "http://localhost:3080/api/user/addmember",
+        "https://gds-cnitjsr-offical.vercel.app/api/user/addmember",
         formData,
         {
           headers: {
@@ -236,11 +236,11 @@ export const Addmembers = () => {
                 {resp && (
                   <>
                     <img
-                      src={`http://localhost:3080/${resp.data.newUser.imageurl}`}
+                      src={`https://gds-cnitjsr-offical.vercel.app/${resp.data.newUser.imageurl}`}
                       alt="User"
                     />
                     {console.log(
-                      `http://localhost:3080/${resp.data.newUser.imageurl}`
+                      `https://gds-cnitjsr-offical.vercel.app/${resp.data.newUser.imageurl}`
                     )}
                   </>
                 )}

@@ -45,7 +45,7 @@ const Signup = () => {
     e.preventDefault();
     setLoading(true);
 
-    const response = await fetch("http://localhost:3080/api/v1/signup", {
+    const response = await fetch("https://gds-cnitjsr-offical.vercel.app/api/v1/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

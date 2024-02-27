@@ -22,7 +22,7 @@ const Addevents = () => {
       navigate("/login");
     } else {
       const ans = await axios.post(
-        "http://localhost:3080/api/user/authenticate",
+        "https://gds-cnitjsr-offical.vercel.app/api/user/authenticate",
         {
           email: value,
         }
@@ -62,7 +62,7 @@ const Addevents = () => {
     formData.append("color", details.color);
     console.log(thumbnail);
     const response = await axios.post(
-      "http://localhost:3080/api/v1/addevents",
+      "https://gds-cnitjsr-offical.vercel.app/api/v1/addevents",
       formData,
       {
         headers: {
@@ -196,7 +196,7 @@ const Addevents = () => {
                 id="thumbnail"
                 name="thumbnail"
                 type="file"
-                required
+                
               />
             </div>
 
@@ -226,10 +226,10 @@ const Addevents = () => {
           {res && (
             <>
               <img
-                src={`http://localhost:3080/${res.thumbnailurl}`}
+                src={`https://gds-cnitjsr-offical.vercel.app/${res.thumbnailurl}`}
                 alt="User"
               />
-              {console.log(`http://localhost:3080/${res.thumbnailurl}`)}
+              {console.log(`https://gds-cnitjsr-offical.vercel.app/${res.thumbnailurl}`)}
             </>
           )}
         </div>

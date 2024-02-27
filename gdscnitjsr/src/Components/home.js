@@ -1,11 +1,11 @@
 import React from 'react'
-import Navbar from './Navbar';
-import About from './aboutus';
-import Hero from './hero';
-import EventsComponent from './events';
-import Socials from './Socials';
-import Footer from './Footer';
-import OurTeam from './ourTeam';
+import Navbar from './Navbar.js';
+import About from './aboutus.js';
+import Hero from './hero.js';
+import EventsComponent from './events.jsx';
+import Socials from './Socials.js';
+import Footer from './Footer.js';
+import OurTeam from './ourTeam.jsx';
 import '../App.css'
 const home = () => {
   return (
