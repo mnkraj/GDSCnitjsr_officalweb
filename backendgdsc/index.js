@@ -13,7 +13,7 @@ const verifytoken = require("./routes/verifytoken")
 const app = express();
 app.use(
   cors(
-    origin: ["https://gds-cnitjsr-offical.vercel.app/"],
+    origin: "*",
   )
 );
 app.use('/userImages',express.static('userImages'))
