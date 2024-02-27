@@ -12,7 +12,9 @@ const Members = require("./routes/Displaymembers")
 const verifytoken = require("./routes/verifytoken")
 const app = express();
 app.use(
-  cors()
+  cors({
+        origin:'http://localhost:3000',
+  })
 );
 app.use('/userImages',express.static('userImages'))
 app.use('/thumbnail',express.static('thumbnail'))
