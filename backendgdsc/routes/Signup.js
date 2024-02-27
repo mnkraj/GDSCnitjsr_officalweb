@@ -39,7 +39,7 @@ router.post("/signup", async (req, res) => {
       from: process.env.EMAIL_PRIMARY,
       to: process.env.EMAIL_SECONDARY,
       subject: 'Email Verification',
-      html: `Someone with the name :  ${name} and Email id : ${email} just registered on the GDSC Admin portal.<br> Click here http://localhost:3080/api/v1/verify/${verificationToken} to verify ${name}.`
+      html: `Someone with the name :  ${name} and Email id : ${email} just registered on the GDSC Admin portal.<br> Click here https://gds-cnitjsr-offical.vercel.app/api/v1/verify/${verificationToken} to verify ${name}.`
     };
     await transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
