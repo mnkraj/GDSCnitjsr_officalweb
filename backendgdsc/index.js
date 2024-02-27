@@ -13,9 +13,8 @@ const verifytoken = require("./routes/verifytoken")
 const app = express();
 app.use(
   cors({
-    origin: "https://gdscfrontend.vercel.app",
+    origin: "*",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
     
   })
 );
