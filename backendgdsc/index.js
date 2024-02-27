@@ -12,9 +12,7 @@ const Members = require("./routes/Displaymembers")
 const verifytoken = require("./routes/verifytoken")
 const app = express();
 app.use(
-  cors({
-        origin:'*',
-  })
+  cors()
 );
 app.use('/userImages',express.static('userImages'))
 app.use('/thumbnail',express.static('thumbnail'))
