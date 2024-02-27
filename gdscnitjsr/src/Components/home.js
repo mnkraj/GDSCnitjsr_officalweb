@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from './navbar';
+import Navbar from './Navbar';
 import About from './aboutus';
 import Hero from './hero';
 import EventsComponent from './events';
@@ -10,7 +10,7 @@ import '../App.css'
 const home = () => {
   return (
   <>
-      <div className="App">
+    <div className="App">
     <Navbar />
     
     <Hero />

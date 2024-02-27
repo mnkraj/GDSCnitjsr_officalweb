@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/navbar";
+// import Navbar from "../Components/Navbar";
 import { useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 import Spinner from "./Spinner";
@@ -88,7 +88,7 @@ const Addevents = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       {loading && <Spinner />}
       <section className="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center " style={{ opacity: loading ? 0.3 : 1 }}>
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 max-w-md w-full">
