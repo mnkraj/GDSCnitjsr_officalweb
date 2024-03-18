@@ -22,8 +22,8 @@ router.post('/login', async (req, res) => {
         //req.session.admin = { email: admin.email };
         //console.log(req.session.user);
         // localStorage.setItem("email", result.email);
-        if (!admin.verified) return res.status(404).json({success: false, message: 'Admin not verified' });
-        else res.json({success: true, message: 'Login successful',email:email });
+        //if (!admin.verified) return res.status(404).json({success: false, message: 'Admin not verified' });
+       res.json({success: true, message: 'Login successful',email:email });
       } else {
         //console.log('Incorrect password for user:', username);
         res.status(401).json({success: false, message: 'Incorrect Credentials' });
